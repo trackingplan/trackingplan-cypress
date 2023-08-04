@@ -6,6 +6,18 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
-  "author": "José Padilla",
-  "license": "ISC"
+  "author": "Trackingplan <support@trackingplan.com>",
+  "license": "UNLICENSED",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/trackingplan/trackingplan-cypress.git"
+  },
+  "keywords": [
+    "trackingplan",
+    "analytics"
+  ],
+  "bugs": {
+    "url": "https://github.com/trackingplan/trackingplan-cypress/issues"
+  },
+  "homepage": "https://github.com/trackingplan/trackingplan-cypress#readme"
 }
