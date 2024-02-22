@@ -3,9 +3,10 @@ Trackingplan Cypress adds support into Cypress to run Trackingplan as part of yo
 
 ## Table of Contents
 
-- [How it works?](#how-it-works)  
+- [How it works?](#how-it-works)
 - [Installing Trackingplan Cypress](#install-trackingplan-cypress)
 - [Advanced options](#advanced-options)
+- [Known issues](#known-issues)
 - [Need help?](#need-help)
 - [Learn more](#learn-more)
 
@@ -38,7 +39,6 @@ $ yarn install --dev @trackingplan/cypress
 2. Add the `trackingplan` command to Cypress:
 
     In order to do so, one option is to import the `@trackingplan/cypress` plugin in your `support/command.js` file. Note that you don't need to copy our custom command, only import the plugin. For example:
-
     
     ```js
     // command.js file
@@ -46,16 +46,22 @@ $ yarn install --dev @trackingplan/cypress
     import '@trackingplan/cypress';
     ````
 
- 3. Call the new `cv.trackingplan` before each of your tests starts:
+ 3. Setup `beforeEach` and `afterEach` for Trackingplan Cypress:
 
     One option is to include a global `beforeEach` in your `support/e2e.js` file. For example:
 
     ```js
     beforeEach(() => {
+        // Initializes Trackingplan Cypress before each test starts
         cy.trackingplan(TP_ID, ENVIRONMENT, TEST_SESSION_ID, {
             // Advanced options goes here
             tracksEndPoint: "https://eu-tracks.trackingplan.com/v1/"
         })
+    });
+
+    afterEach(() => {
+        // Ensures collected data is sent after test has finished
+        cy.trackingplan_after_each();
     });
     ```
 
@@ -75,10 +81,13 @@ The `cy.trackingplan` command can receive an optional `options` object as the la
 | Parameter | Description | Default value | Example |
 |-|-|-|-|
 | `customDomains` | Allows to extend the list of monitored domains. Any request made to these domains will also be forwarded to Trackingplan. The format is `{"myAnalyticsDomain.com": "myAnalytics"}`, where you put, respectively, the domain to be looked for and the alias you want to use for that analytics domain. | `{}`            | `{"mixpanel.com": "Mixpanel"}` |
-| `sourceAlias`   | Allows to differentiate between sources | `Javascript` | `IOS App` |
+| `sourceAlias`   | Allows to differentiate between sources | `cypress` | `IOS App` |
 | `tracksEndPoint` | Endpoint where collected analytics data are sent.
 | `debug`         | Shows Trackingplan debugging information in the console | `false` | `true` |
 
+
+## Known issues
+- `cy.intercept` command doesn't work as expected when `fetch` interceptor is enabled in Trackinglan Cypress. This interceptor is disabled by default.
 
 ## Need help?
 Questions? Problems? Need more info? We can help! Contact us [here](mailto:team@trackingplan.com).
