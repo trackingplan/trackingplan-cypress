@@ -4,7 +4,7 @@ Trackingplan Cypress adds support into Cypress to run Trackingplan as part of yo
 ## Table of Contents
 
 - [How it works?](#how-it-works)
-- [Installing Trackingplan Cypress](#install-trackingplan-cypress)
+- [Installing Trackingplan Cypress](#installing-trackingplan-cypress)
 - [Advanced options](#advanced-options)
 - [Known issues](#known-issues)
 - [Need help?](#need-help)
