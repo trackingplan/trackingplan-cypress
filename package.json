@@ -1,6 +1,6 @@
 {
   "name": "@trackingplan/cypress",
-  "version": "1.0.2",
+  "version": "1.0.3",
   "description": "Trackingplan integration for Cypress",
   "main": "trackingplan.js",
   "scripts": {
